@@ -1,5 +1,4 @@
-﻿// Screen Sound 
-// O C# é uma linguagem fortimente tipada, ou seja, preciso dizer o tipo da variável no momento de declarar
+﻿// O C# é uma linguagem fortimente tipada, ou seja, preciso dizer o tipo da variável no momento de declarar
 
 string mensagemDeBoasVindas = "Bem-vindos ao Screen Sound";
 void ExibirMensagemDeBoasVindas() // o nome de funções se utiliza o padrão PascalCase, ou seja, cada palavra começa com letra maiúscula e não se utiliza underline.
