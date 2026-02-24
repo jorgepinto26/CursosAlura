@@ -1,5 +1,6 @@
 ﻿// O C# é uma linguagem fortimente tipada, ou seja, preciso dizer o tipo da variável no momento de declarar
 
+/*
 string mensagemDeBoasVindas = "Bem-vindos ao Screen Sound!";
 List<string> listaDeBandas = new List<string> {"U2", "Calypso", "Mariah Carey"};
 
@@ -119,20 +120,7 @@ void MostrarTodasAsBandas()
     ExibirOpcoesDoMenu();
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+*/
 
 /*
 Console.Write("Informe a média final do aluno: ");
@@ -169,4 +157,107 @@ else
     Console.WriteLine("Número inválido. Por favor, escolha um número entre 0 e " + (nomes.Count - 1));
 }
 
+
+
+Random rnd = new Random();
+double a = Math.Round(rnd.NextDouble()*100,2);
+double b = Math.Round(rnd.NextDouble()*100,2);
+
+quatroOperacoes(a, b);
+
+void quatroOperacoes(double a, double b)
+{
+    Console.WriteLine("******************************************");
+    Console.WriteLine("As quatro operações fundamentais com a e b");
+    Console.WriteLine("******************************************\n");
+    Console.WriteLine($"a = {a}");
+    Console.WriteLine($"b = {b}");
+    Console.WriteLine($"Adição: {Math.Round(a + b, 2)}");
+    Console.WriteLine($"Subtração: {Math.Round(a - b, 2)}");
+    if(b == 0)
+    {
+        Console.WriteLine("Divisão: Não é possível dividir por zero!");
+    }
+    else
+    {
+        Console.WriteLine($"Divisão: {Math.Round(a / b, 2)}");
+    }
+    
+    Console.WriteLine($"Multiplicação: {Math.Round(a * b, 2)}");
+
+}
+
+
+List<string> minhasBandas = new List<string>();
+
+Cabecalho();
+
+while(true)
+{
+    minhasBandas.Add(Console.ReadLine()!);
+
+    Console.WriteLine("Banda registrada com sucesso!");
+    Thread.Sleep(2000);
+    Console.Clear();
+    Cabecalho();
+
+    if(Console.KeyAvailable)
+    {
+        var key = Console.ReadKey(true);
+
+        if(key.Key == ConsoleKey.Q)
+        {
+            Console.WriteLine("Encerrando cadastro de bandas....");
+            Thread.Sleep(2000);
+            MostrarBandas();
+            break;
+        }
+    }
+
+}
+
+void MostrarBandas()
+{
+    Console.Clear();
+    Console.WriteLine("*********************");
+    Console.WriteLine("Suas bandas favoritas");
+    Console.WriteLine("*********************\n");
+
+    foreach (var band in minhasBandas)
+    {
+        Console.WriteLine($"Banda {band}");
+    }
+
+    Thread.Sleep(5000);
+}
+        
+void Cabecalho()
+{
+    Console.WriteLine("****************************");
+    Console.WriteLine("Registro de bandas favoritas");
+    Console.WriteLine("****************************\n");
+    Console.Write("Digite o nome de uma banda para registro: ");
+}
 */
+
+List<int> numeros = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+int soma = 0;
+
+Cabecalho();
+
+Console.Write("Lista: ");
+
+for (int i = 0; i < numeros.Count; i++ )
+{
+    Console.Write($"{numeros[i]} ");
+    soma = soma + numeros[i];
+}
+
+Console.WriteLine($"\nSoma dos elementos da lista: {soma}");
+void Cabecalho()
+{
+    Console.WriteLine("***************************");
+    Console.WriteLine("Soma dos elementos da lista");
+    Console.WriteLine("***************************\n");
+}
+
