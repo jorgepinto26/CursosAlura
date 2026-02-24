@@ -1,15 +1,16 @@
 ﻿// O C# é uma linguagem fortimente tipada, ou seja, preciso dizer o tipo da variável no momento de declarar
 
-string mensagemDeBoasVindas = "Bem-vindos ao Screen Sound";
+string mensagemDeBoasVindas = "Bem-vindos ao Screen Sound!";
+List<string> listaDeBandas = new List<string> {"U2", "Calypso", "Mariah Carey"};
+
+ExibirLogo();
+ExibirMensagemDeBoasVindas();
+ExibirOpcoesDoMenu();
+
+
 void ExibirMensagemDeBoasVindas() // o nome de funções se utiliza o padrão PascalCase, ou seja, cada palavra começa com letra maiúscula e não se utiliza underline.
 {
-    Console.WriteLine(@"
-░██████╗░█████╗░██████╗░███████╗███████╗███╗░░██╗  ░██████╗░█████╗░██╗░░░██╗███╗░░██╗██████╗░
-██╔════╝██╔══██╗██╔══██╗██╔════╝██╔════╝████╗░██║  ██╔════╝██╔══██╗██║░░░██║████╗░██║██╔══██╗
-╚█████╗░██║░░╚═╝██████╔╝█████╗░░█████╗░░██╔██╗██║  ╚█████╗░██║░░██║██║░░░██║██╔██╗██║██║░░██║
-░╚═══██╗██║░░██╗██╔══██╗██╔══╝░░██╔══╝░░██║╚████║  ░╚═══██╗██║░░██║██║░░░██║██║╚████║██║░░██║
-██████╔╝╚█████╔╝██║░░██║███████╗███████╗██║░╚███║  ██████╔╝╚█████╔╝╚██████╔╝██║░╚███║██████╔╝
-╚═════╝░░╚════╝░╚═╝░░╚═╝╚══════╝╚══════╝╚═╝░░╚══╝  ╚═════╝░░╚════╝░░╚═════╝░╚═╝░░╚══╝╚═════╝░");
+
     Console.WriteLine(mensagemDeBoasVindas);
 }
 
@@ -23,15 +24,16 @@ void ExibirOpcoesDoMenu()
 
     Console.Write("\nDigite a sua opção: ");//Não quebra a linha, ou seja, o cursor fica na mesma linha da mensagem.
     string opcaoEscolhida = Console.ReadLine()!;
-    int opcaoEscolhidaInt = int.Parse(opcaoEscolhida); // Convertendo a string para inteiro
-  
-    switch (opcaoEscolhidaInt)
+   
+    if (int.TryParse(opcaoEscolhida, out int opcaoEscolhidaInt))
+    {
+        switch (opcaoEscolhidaInt)
         {
             case 1:
-                Console.WriteLine("Você escolheu a opção 1 - Registrar uma banda");
+                RegistrarBanda();
                 break;
             case 2:
-                Console.WriteLine("Você escolheu a opção 2 - Mostrar todas as bandas");
+                MostrarTodasAsBandas();
                 break;
             case 3:
                 Console.WriteLine("Você escolheu a opção 3 - Avaliar uma banda");
@@ -45,11 +47,92 @@ void ExibirOpcoesDoMenu()
             default:
                 Console.WriteLine("Opção inválida. Por favor, escolha uma opção válida.");
                 break;
+        }
+
+    }
+    else
+    {
+        Console.Clear();
+        Console.WriteLine("Opção inválida. Por favor, escolha uma opção válida.");
+        Thread.Sleep(2000);
+        ExibirLogo();
+        ExibirOpcoesDoMenu();
+
     }
 }
 
-ExibirMensagemDeBoasVindas();
-ExibirOpcoesDoMenu();
+void ExibirLogo()
+{
+    Console.Clear();
+    Console.WriteLine(@"
+░██████╗░█████╗░██████╗░███████╗███████╗███╗░░██╗  ░██████╗░█████╗░██╗░░░██╗███╗░░██╗██████╗░
+██╔════╝██╔══██╗██╔══██╗██╔════╝██╔════╝████╗░██║  ██╔════╝██╔══██╗██║░░░██║████╗░██║██╔══██╗
+╚█████╗░██║░░╚═╝██████╔╝█████╗░░█████╗░░██╔██╗██║  ╚█████╗░██║░░██║██║░░░██║██╔██╗██║██║░░██║
+░╚═══██╗██║░░██╗██╔══██╗██╔══╝░░██╔══╝░░██║╚████║  ░╚═══██╗██║░░██║██║░░░██║██║╚████║██║░░██║
+██████╔╝╚█████╔╝██║░░██║███████╗███████╗██║░╚███║  ██████╔╝╚█████╔╝╚██████╔╝██║░╚███║██████╔╝
+╚═════╝░░╚════╝░╚═╝░░╚═╝╚══════╝╚══════╝╚═╝░░╚══╝  ╚═════╝░░╚════╝░░╚═════╝░╚═╝░░╚══╝╚═════╝░");
+
+}
+
+void RegistrarBanda()
+{
+    Console.Clear();
+    Console.Write("Digite o nome da banda que deseja registrar: ");
+    string nomeDaBanda = Console.ReadLine()!;
+    
+    if (listaDeBandas.Contains(nomeDaBanda))
+    {
+        Console.Clear();
+        Console.WriteLine("Esta banda já foi registrada!");
+        Thread.Sleep(2000);
+        Console.WriteLine("\nRegistre outra banda!");
+        Thread.Sleep(2000);
+        RegistrarBanda();
+    }
+    else
+    {
+        listaDeBandas.Add(nomeDaBanda);
+        Console.Clear();
+        Console.WriteLine($"A banda {nomeDaBanda} foi registrada com sucesso!");
+        Thread.Sleep(2000);
+        ExibirLogo();
+        ExibirOpcoesDoMenu();
+    }
+
+}
+
+void MostrarTodasAsBandas()
+{
+    Console.Clear();
+    Console.WriteLine("****************************");
+    Console.WriteLine("Exibindo bandas registradas");
+    Console.WriteLine("****************************\n");
+
+    for (int i = 0; i < listaDeBandas.Count; i++ )
+    {
+        Console.WriteLine($"Banda: {listaDeBandas[i]}");
+    }
+
+    Console.WriteLine("\nPressione qualquer tecla para voltar ao menu principal");
+    Console.ReadKey();
+    ExibirLogo();
+    ExibirOpcoesDoMenu();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*
 Console.Write("Informe a média final do aluno: ");
