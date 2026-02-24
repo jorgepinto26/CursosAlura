@@ -1,6 +1,6 @@
 ﻿// O C# é uma linguagem fortimente tipada, ou seja, preciso dizer o tipo da variável no momento de declarar
 
-/*
+
 string mensagemDeBoasVindas = "Bem-vindos ao Screen Sound!";
 List<string> listaDeBandas = new List<string> {"U2", "Calypso", "Mariah Carey"};
 
@@ -120,7 +120,7 @@ void MostrarTodasAsBandas()
     ExibirOpcoesDoMenu();
 }
 
-*/
+
 
 /*
 Console.Write("Informe a média final do aluno: ");
@@ -238,7 +238,7 @@ void Cabecalho()
     Console.WriteLine("****************************\n");
     Console.Write("Digite o nome de uma banda para registro: ");
 }
-*/
+
 
 List<int> numeros = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 int soma = 0;
@@ -261,3 +261,42 @@ void Cabecalho()
     Console.WriteLine("***************************\n");
 }
 
+
+
+List<int> numeros = new List<int> { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+
+Console.WriteLine("Exibindo os números da lista:\n");
+
+for (int i = 0; i < numeros.Count; i++)
+{
+    Console.Write($"{numeros[i]} ");  
+    if(i == numeros.Count - 1)  
+    {
+        Console.WriteLine("\n");
+    }
+}
+
+Console.WriteLine("Utilizando o for para exibir os números pares da lista:\n");
+for (int i = 0; i < numeros.Count; i++)
+{
+    if (numeros[i]%2 == 0)
+    {
+        Console.WriteLine($"Número par: {numeros[i]}");
+    }
+
+    if(i == numeros.Count - 1)
+    {
+        Console.WriteLine("\n");
+    }
+}
+
+Console.WriteLine("Utilizando o foreach para exibir os números pares da lista:\n");
+foreach (var numero in numeros)
+{
+    if(numero%2 == 0)
+    {
+        Console.WriteLine($"Número par: {numero}");
+    }
+}
+
+*/
