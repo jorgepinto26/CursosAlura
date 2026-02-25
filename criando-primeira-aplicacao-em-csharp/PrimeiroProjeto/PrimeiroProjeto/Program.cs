@@ -37,7 +37,7 @@ void ExibirOpcoesDoMenu()
                 MostrarTodasAsBandas();
                 break;
             case 3:
-                Console.WriteLine("Você escolheu a opção 3 - Avaliar uma banda");
+                AvaliarUmaBanda();
                 break;
             case 4:
                 Console.WriteLine("Você escolheu a opção 4 - Exibir a média de uma banda");
@@ -78,6 +78,7 @@ void ExibirLogo()
 void RegistrarBanda()
 {
     Console.Clear();
+    ExibirTitulo("Registro das Bandas escolhidas");
     Console.Write("Digite o nome da banda que deseja registrar: ");
     string nomeDaBanda = Console.ReadLine()!;
     
@@ -105,9 +106,7 @@ void RegistrarBanda()
 void MostrarTodasAsBandas()
 {
     Console.Clear();
-    Console.WriteLine("****************************");
-    Console.WriteLine("Exibindo bandas registradas");
-    Console.WriteLine("****************************\n");
+    ExibirTitulo("Exibindo Bandas Registradas");
 
     for (int i = 0; i < listaDeBandas.Count; i++ )
     {
@@ -120,7 +119,59 @@ void MostrarTodasAsBandas()
     ExibirOpcoesDoMenu();
 }
 
+void ExibirTitulo(string titulo)
+{
+    int quantidadeDeCaracteres = titulo.Length;
+    string asteriscos = string.Empty.PadLeft(quantidadeDeCaracteres, '*');
+    Console.WriteLine(asteriscos);
+    Console.WriteLine(titulo); 
+    Console.WriteLine(asteriscos + "\n");
+}
 
+void AvaliarUmaBanda()
+{
+    Console.Clear();
+    ExibirTitulo("Avaliação de Bandas");
+    Console.Write("Digite o nome da banda que deseja avaliar: ");
+    string bandaAvaliada = Console.ReadLine()!;
+
+    if (!listaDeBandas.Contains(bandaAvaliada))
+    {
+        Console.WriteLine("Esta banda não foi registrada ainda! Por favor, registre a banda antes de avaliá-la.");
+        Console.WriteLine("Deseja registrar a banda agora? (S/N)");
+
+        string resposta = Console.ReadLine()!;
+
+        if (resposta == "S")
+        {
+            RegistrarBanda();
+        }
+        else if(resposta == "N") 
+        {
+            Console.Clear();
+            ExibirLogo();
+            ExibirOpcoesDoMenu();
+        }
+        else
+        {
+            Console.WriteLine("Resposta inválida. Retornando ao menu principal...");
+            Thread.Sleep(2000);
+            ExibirLogo();
+            ExibirOpcoesDoMenu();
+
+        }
+
+    }
+    else
+    {
+        Console.Write($"Digite a nota que deseja dar para a banda {bandaAvaliada}: ");
+        string nota = Console.ReadLine()!;
+        Console.WriteLine(nota);
+        Thread.Sleep(2000);
+        ExibirLogo();
+        ExibirOpcoesDoMenu();
+    }
+}
 
 /*
 Console.Write("Informe a média final do aluno: ");
