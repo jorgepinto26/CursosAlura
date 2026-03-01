@@ -1,6 +1,6 @@
 ﻿// O C# é uma linguagem fortimente tipada, ou seja, preciso dizer o tipo da variável no momento de declarar
 
-
+/*
 string mensagemDeBoasVindas = "Bem-vindos ao Screen Sound!";
 //List<string> listaDeBandas = new List<string> {"U2", "Calypso", "Mariah Carey"};
 
@@ -184,8 +184,129 @@ void AvaliarUmaBanda()
         ExibirOpcoesDoMenu();
     }
 }
+*/
 
 /*
+Dictionary<string, int> produto = new Dictionary<string, int>();
+ExibirMenu();
+
+void ExibirMenu()
+{
+
+    Console.Clear();
+    ExibirTitulo("Bem-vindo ao estoque de produtos");
+    Console.WriteLine("1 - Registrar um produto");
+    Console.WriteLine("2 - Registrar a quantidade de um produto");
+    Console.WriteLine("3 - Exibir o estoque de um produto");
+    Console.WriteLine("4 - Sair");
+    Console.Write("Digite uma opção para continuar: ");
+    int opcaoEscolhida = int.Parse(Console.ReadLine()!);
+    switch (opcaoEscolhida)
+    {
+        case 1:
+            RegistrarProduto();
+            break;
+        case 2:
+            RegistrarQuantidade();
+            break;
+        case 3:
+            ExibirProduto();
+            break;
+        case 4:
+            Console.WriteLine("Saindo do programa...");
+            break;
+        default:
+            Console.WriteLine("Opção inválida. Por favor, escolha uma opção válida.");
+            break;
+    }
+}
+
+void RegistrarProduto()
+{
+   Console.Clear();
+   ExibirTitulo("Registrar um produto");
+   Console.WriteLine("Escreva o nome do produto que deseja registrar: ");
+   string nomeDoProduto = Console.ReadLine()!;
+   produto.Add(nomeDoProduto, 0);
+   Console.WriteLine("O produto " + nomeDoProduto + " foi registrado com sucesso!");
+   Thread.Sleep(5000);
+   ExibirMenu();
+}
+
+void RegistrarQuantidade()
+{
+    Console.Clear();
+    ExibirTitulo("Registrar a quantidade de um produto");
+    Console.WriteLine("Escreva o nome do produto: ");
+    string nomeDoProduto = Console.ReadLine()!;
+    Console.WriteLine("Escreva a quantidade do produto: ");
+    int quantidadeDoProduto = int.Parse(Console.ReadLine()!);
+    produto[nomeDoProduto] = quantidadeDoProduto;
+    Console.WriteLine($"A quantidade do produto {nomeDoProduto} foi registrada com sucesso!");
+    Thread.Sleep(5000);
+    ExibirMenu();
+
+}
+
+void ExibirProduto()
+{
+    Console.Clear();
+    ExibirTitulo("Exibir estoque de um produto");
+    Console.WriteLine("Digitr o nome do produto: ");
+    string nomeDoProduto = Console.ReadLine()!;
+    if (!produto.ContainsKey(nomeDoProduto))
+    {
+        Console.WriteLine("Este produto não foi registrado ainda! Por favor, registre o produto antes de exibir o estoque.");
+        Console.WriteLine("Deseja registrar o produto agora? (S/N)");
+        string resposta = Console.ReadLine()!;
+        if (resposta == "S")
+        {
+            RegistrarProduto();
+        }
+        else if(resposta == "N") 
+        {
+            Console.Clear();
+            ExibirMenu();
+        }
+        else
+        {
+            Console.WriteLine("Resposta inválida. Retornando ao menu principal...");
+            Thread.Sleep(2000);
+            ExibirMenu();
+        }
+    }
+    Console.WriteLine($"O produto {nomeDoProduto} possui {produto[nomeDoProduto]} unidades em estoque");
+    Thread.Sleep(5000);
+    ExibirMenu();
+}
+
+void ExibirTitulo(string titulo)
+{
+    int quantidadeDeCaracteres = titulo.Length;
+    string asteriscos = string.Empty.PadLeft(quantidadeDeCaracteres, '*');
+    Console.WriteLine(asteriscos);
+    Console.WriteLine(titulo);
+    Console.WriteLine(asteriscos + "\n");
+}
+
+
+
+Dictionary<string, List<int>> alunoENotas = new Dictionary<string, List<int>> { { "Jerubalex", new List<int> { 10, 8, 8, 10, 7 } } };
+
+Console.Write($"Média do {alunoENotas.Keys.First()}: ");
+double media = CalculoDaMedia(alunoENotas);
+Console.Write(media);
+double CalculoDaMedia(Dictionary<string, List<int>> aluno)
+{
+    string nomeDoAluno = aluno.Keys.First();
+    double mediaDb = 0;
+    for(int i = 0; i < aluno[aluno.Keys.First()].Count; i++)
+    {
+        mediaDb = mediaDb + aluno[nomeDoAluno][i];
+    }
+    return mediaDb / aluno[aluno.Keys.First()].Count;
+};
+
 Console.Write("Informe a média final do aluno: ");
 string notaMedia = Console.ReadLine()!; // O operador ! é utilizado para indicar que a variável não será nula, ou seja, o valor de notaMedia não será nulo.
 int notaMediaInt = int.Parse(notaMedia);
