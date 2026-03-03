@@ -1,6 +1,6 @@
 ﻿// O C# é uma linguagem fortimente tipada, ou seja, preciso dizer o tipo da variável no momento de declarar
 
-/*
+
 string mensagemDeBoasVindas = "Bem-vindos ao Screen Sound!";
 //List<string> listaDeBandas = new List<string> {"U2", "Calypso", "Mariah Carey"};
 
@@ -45,7 +45,7 @@ void ExibirOpcoesDoMenu()
                 AvaliarUmaBanda();
                 break;
             case 4:
-                Console.WriteLine("Você escolheu a opção 4 - Exibir a média de uma banda");
+                ExibirMediaDeUmaBanda();
                 break;
             case -1:
                 Console.WriteLine("Saindo do programa...");
@@ -184,10 +184,38 @@ void AvaliarUmaBanda()
         ExibirOpcoesDoMenu();
     }
 }
-*/
 
+void ExibirMediaDeUmaBanda()
+{
+    Console.Clear();
+    ExibirTitulo("Exibir média da banda");
+    Console.Write("Digite o nome da banda que deseja ver a média: ");
+    string bandaEscolhida = Console.ReadLine()!;
+
+    if (bandasENotas.ContainsKey(bandaEscolhida))
+    {
+        double media = bandasENotas[bandaEscolhida].Average();
+        Console.WriteLine($"A média de notas da banda {bandaEscolhida} é: {media}");
+        Console.WriteLine("\nPressione qualquer tecla para voltar ao menu principal");
+        Console.ReadKey();
+        ExibirOpcoesDoMenu();
+    }
+    else
+    {
+        Console.WriteLine("Esta banda não foi registrada ainda! Por favor, registre a banda antes de exibir a média.");
+        Console.WriteLine("\nPressione qualquer tecla para voltar ao menu principal");
+        Console.ReadKey();
+        ExibirOpcoesDoMenu();
+    }
+}
 
 //Escreva o programa aqui
+
+/*
+ 
+
+//EXERCICIO MEDIA DE VENDAS DOS CARROS MAIS RÁPIDOS****************************************************************************************************************************************************************************
+
 Dictionary<string, List<int>> vendasCarros = new Dictionary<string, List<int>> {
     { "Bugatti Veyron", new List<int> { 10, 15, 12, 8, 5 } },
     { "Koenigsegg Agera RS", new List<int> { 2, 3, 5, 6, 7 } },
@@ -236,7 +264,7 @@ double ExibirMediaDeVendas(string modelo)
 
 
 
-/*
+
 //EXERCICIO LOGIN E SENHA****************************************************************************************************************************************************************************
 
 Dictionary<string, string> usuarioESenha = new Dictionary<string, string> 
