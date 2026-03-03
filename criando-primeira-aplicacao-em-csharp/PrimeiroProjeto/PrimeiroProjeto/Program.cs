@@ -186,7 +186,154 @@ void AvaliarUmaBanda()
 }
 */
 
+
+//Escreva o programa aqui
+Dictionary<string, List<int>> vendasCarros = new Dictionary<string, List<int>> {
+    { "Bugatti Veyron", new List<int> { 10, 15, 12, 8, 5 } },
+    { "Koenigsegg Agera RS", new List<int> { 2, 3, 5, 6, 7 } },
+    { "Lamborghini Aventador", new List<int> { 20, 18, 22, 24, 16 } },
+    { "Pagani Huayra", new List<int> { 4, 5, 6, 5, 4 } },
+    { "Ferrari LaFerrari", new List<int> { 7, 6, 5, 8, 10 } }
+};
+
+MenuPrincipal();
+
+void MenuPrincipal()
+{
+    Console.Clear();
+    Console.WriteLine("***************************************");
+    Console.WriteLine("Média de vendas dos carros mais rápidos");
+    Console.WriteLine("***************************************\n");
+    Console.Write("Digite o modelo do veículo: ");
+    string modeloDoVeiculo = Console.ReadLine()!;
+    double mediaDasVendas = ExibirMediaDeVendas(modeloDoVeiculo);
+    Console.WriteLine($"A média de vendas do modelo {modeloDoVeiculo} é: {mediaDasVendas}");
+
+
+}
+
+double ExibirMediaDeVendas(string modelo)
+{
+    double mediaDeVendas = 0;
+    if (vendasCarros.ContainsKey(modelo))
+    {
+        foreach (var venda in vendasCarros[modelo])
+        {
+            mediaDeVendas = mediaDeVendas + venda;
+        }
+    }
+    else
+    {
+        Console.WriteLine("Modelo de veículo não encontrado. Por favor, digite um modelo válido.");
+        Thread.Sleep(3000);
+        Console.WriteLine("Retornando ao menu principal...");
+        Thread.Sleep(2000);
+        MenuPrincipal();
+
+    }
+    return mediaDeVendas = mediaDeVendas / vendasCarros[modelo].Count;
+}
+
+
+
 /*
+//EXERCICIO LOGIN E SENHA****************************************************************************************************************************************************************************
+
+Dictionary<string, string> usuarioESenha = new Dictionary<string, string> 
+{
+    { "Jorge", "12345" },
+    {"Maria", "54321"},
+    {"Sergio", "98765"},
+    {"Letícia", "56789"},
+    {"Leonardo", "13579"} 
+};
+
+ExibirMenu();
+
+void ExibirMenu()
+{
+    Console.Clear();
+    ExibirTitulo("Sistema de Login");
+    Console.Write("Digite o nome de usuário: ");
+    string usuario = Console.ReadLine()!;
+    Console.Write("Digite a senha: ");
+    string senha = Console.ReadLine()!;
+    if (usuarioESenha.ContainsKey(usuario) && usuarioESenha[usuario] == senha)
+    {
+        Console.WriteLine("\nLogin bem-sucedido! Bem-vindo, " + usuario + "!");
+    }
+    else
+    {
+        Console.WriteLine("\nLogin falhou! Nome de usuário ou senha incorretos.");
+    }
+}
+
+void ExibirTitulo(string titulo)
+{
+    int asteriscos = titulo.Length;
+    string linhaDeAsteriscos = string.Empty.PadLeft(asteriscos, '*');
+    Console.WriteLine(linhaDeAsteriscos);
+    Console.WriteLine(titulo);
+    Console.WriteLine(linhaDeAsteriscos + "\n");
+}
+
+//EXERCICIO QUIZ****************************************************************************************************************************************************************************
+
+Dictionary<string, string> perguntasERespostas = new Dictionary<string, string>
+{
+    {"Qual é a capital da França?", "Paris"},
+    {"Qual é o maior planeta do sistema solar?", "Júpiter"},
+    {"Quem pintou a Mona Lisa?", "Leonardo da Vinci"},
+    {"Qual é a fórmula química da água?", "H2O"},
+    {"Quem escreveu 'Dom Quixote'?", "Miguel de Cervantes"}
+};
+
+ExibirMenu();
+
+void ExibirMenu()
+{
+    Console.Clear();
+    ExibirTitulo("Quiz do Jorge");
+
+    foreach (var pergunta in perguntasERespostas.Keys)
+    {
+        Console.WriteLine(pergunta);
+        string respostaDoUsuario = Console.ReadLine()!;
+        //if (respostaDoUsuario.Equals(perguntasERespostas[pergunta], StringComparison.OrdinalIgnoreCase))
+        if (perguntasERespostas[pergunta].Equals(respostaDoUsuario, StringComparison.OrdinalIgnoreCase))
+        {
+            Console.WriteLine("Resposta correta!");
+        }
+        else
+        {
+            Console.WriteLine($"Resposta incorreta! A resposta correta é: {perguntasERespostas[pergunta]}");
+        }
+        Console.WriteLine();
+    }
+}
+
+void ExibirTitulo(string titulo)
+{
+    int asteriscos = titulo.Length;
+    string linhaDeAsteriscos = string.Empty.PadLeft(asteriscos, '*');
+    Console.WriteLine(linhaDeAsteriscos);
+    Console.WriteLine(titulo);
+    Console.WriteLine(linhaDeAsteriscos + "\n");
+}
+
+
+//CONSIDERAÇÕES SOBRE DICIONÁRIOS****************************************************************************************************************************************************************************
+
+ Declaração do dicionário: Dictionary<string, int> nomeDoDicionario = new Dictionary<string, int>(); Aqui escolhi para o tipo da chave string, e para o tipo do valor int, ou seja, o dicionário irá armazenar uma chave do tipo string e um valor do tipo inteiro.
+ Inserir uma chave no dicionário: nomeDoDicionario.Add("chave", valor); Aqui estou utilizando o método Add para inserir uma chave e um valor no dicionário. A chave é "chave" e o valor é valor, que deve ser do tipo inteiro, conforme a declaração do dicionário.
+ Inserir um valor no dicionário: nomeDoDicionario["chave"] = valor; Aqui estou utilizando a sintaxe de indexação para inserir um valor no dicionário. A chave é "chave" e o valor é valor, que deve ser do tipo inteiro, conforme a declaração do dicionário. Se a chave "chave" já existir no dicionário, o valor associado a essa chave será atualizado para o novo valor fornecido.
+ Acessar um valor no dicionário: int valor = nomeDoDicionario["chave"]; Aqui estou utilizando a sintaxe de indexação para acessar o valor associado à chave "chave" no dicionário. O valor será armazenado na variável valor, que deve ser do tipo inteiro, conforme a declaração do dicionário. Se a chave "chave" não existir no dicionário, uma exceção será lançada.
+ Acessar uma chave no meio do dicionário não é possível, pois os dicionários não possuem uma ordem definida para as chaves. Para acessar um valor específico, é necessário conhecer a chave associada a esse valor. Se você deseja acessar um valor específico, pode utilizar o método TryGetValue para verificar se a chave existe no dicionário e obter o valor associado a essa chave de forma segura, sem lançar uma exceção caso a chave não exista.
+ Acessar a primeira chave do dicionário: string primeiraChave = nomeDoDicionario.Keys.First(); Aqui estou utilizando a propriedade Keys do dicionário para obter uma coleção de todas as chaves presentes no dicionário, e em seguida, utilizando o método First() para acessar a primeira chave dessa coleção. A chave será armazenada na variável primeiraChave, que deve ser do tipo string, conforme a declaração do dicionário. Vale ressaltar que a ordem das chaves em um dicionário não é garantida, portanto, a "primeira" chave pode variar dependendo da implementação do dicionário e da ordem de inserção das chaves.
+
+
+//EXERCICIO ESTOQUE DE PRODUTOS****************************************************************************************************************************************************************************
+
 Dictionary<string, int> produto = new Dictionary<string, int>();
 ExibirMenu();
 
@@ -289,7 +436,7 @@ void ExibirTitulo(string titulo)
     Console.WriteLine(asteriscos + "\n");
 }
 
-
+//EXERCICIO CALCULO DE MEDIA DE NOTAS DOS ALUNOS****************************************************************************************************************************************************************************
 
 Dictionary<string, List<int>> alunoENotas = new Dictionary<string, List<int>> { { "Jerubalex", new List<int> { 10, 8, 8, 10, 7 } } };
 
@@ -320,11 +467,12 @@ else
     Console.WriteLine("Nota insuficiente para aprovação");
 }
 
-
+//EXERCICIO LISTA DE LINGUAGENS DE PROGRAMAÇÃO****************************************************************************************************************************************************************************
 
 List<string> linguagensDeProgramacao = new List<string> {"C#", "Java", "JavaScript"};
 Console.WriteLine("Estou aprendendo a linguagem de programação: " + linguagensDeProgramacao[0]); // Acessando o primeiro elemento da lista, ou seja, a linguagem C#.
 
+//EXERCICIO NUMERO SECRETO****************************************************************************************************************************************************************************
 
 List<string> nomes = new List<string> { "Jorge", "Verônica", "Sergio", "Letícia", "Leonardo" };
 
@@ -341,7 +489,7 @@ else
     Console.WriteLine("Número inválido. Por favor, escolha um número entre 0 e " + (nomes.Count - 1));
 }
 
-
+//EXERCICIO QUATRO OPERAÇÕES FUNDAMENTAIS****************************************************************************************************************************************************************************
 
 Random rnd = new Random();
 double a = Math.Round(rnd.NextDouble()*100,2);
@@ -371,6 +519,7 @@ void quatroOperacoes(double a, double b)
 
 }
 
+//EXERCICIO REGISTRO DE BANDAS FAVORITAS****************************************************************************************************************************************************************************
 
 List<string> minhasBandas = new List<string>();
 
@@ -423,6 +572,7 @@ void Cabecalho()
     Console.Write("Digite o nome de uma banda para registro: ");
 }
 
+//EXERCICIO SOMA DOS ELEMENTOS DE UMA LISTA****************************************************************************************************************************************************************************
 
 List<int> numeros = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 int soma = 0;
@@ -446,6 +596,7 @@ void Cabecalho()
 }
 
 
+//EXERCICIO EXIBIÇÃO DE NÚMEROS PARES DE UMA LISTA****************************************************************************************************************************************************************************
 
 List<int> numeros = new List<int> { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 
